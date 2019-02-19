@@ -1,1 +1,1 @@
-# RocketLeague_Bot
+# Rocket League Bot Project Using RLBot Framework
