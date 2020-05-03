@@ -35,8 +35,8 @@ class RLBot(BaseAgent):
            self.aim(ball_pos.x, ball_pos.y)
 
            #Shoot if close enough to ball
-           if distance(self.bot_pos.x, self.bot_pos.y, ball_pos.x, ball_pos.y) < DODGEDISTANCE:
-               should_dodge = True
+           if distance(self.bot_pos.x, self.bot_pos.y, ball_pos.x, ball_pos.y) < self.DODGEDISTANCE:
+               self.should_dodge = True
 
         #If not then drive towards own goal (until are behind ball)
         else:
@@ -50,7 +50,7 @@ class RLBot(BaseAgent):
         self.check_for_dodge()
 
         #boost when over threshold away
-        self.controller.boost = distance(self.bot_pos.x, self.bot_pos.y, ball_pos.x, ball_pos.y) > DISTANCETOBOOST
+        self.controller.boost = distance(self.bot_pos.x, self.bot_pos.y, ball_pos.x, ball_pos.y) > self.DISTANCETOBOOST
 
         if ball_pos.x == 0 and ball_pos.y == 0:
             self.aim(ball_pos.x, ball_pos.y)
@@ -82,7 +82,7 @@ class RLBot(BaseAgent):
             self.controller.steer = 0
 
         #powerslide if angle greater than threshold
-        self.controller.handbrake = abs(math.degrees(angle_front_to_target)) < self.POWERSLIDE_ANGLE
+        self.controller.handbrake = abs(math.degrees(angle_front_to_target)) < self.POWERSLIDEANGLE
 
     def check_for_dodge(self):
 
